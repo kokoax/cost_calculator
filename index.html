@@ -2,9 +2,52 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Electron Read Us</title>
+    <title>Cost Calculator</title>
+
+    <link rel="stylesheet" href="//yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit-icons.min.js"></script>
   </head>
   <body>
-    <h1>Hello, electron!</h1>
+    <script src="./js/render_items.js"></script>
+
+    <div class="uk-child-width-1-2@s" uk-grid>
+      <div>
+        <h4>作りたいもの</h4>
+        <div uk-sortable="group: make-group">
+          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+            <h3 class="uk-card-title">革: 300G</h3>
+            <div style="float: left;">
+              <span style="">水</span><br>
+              <span style="">獣の革</span><br>
+              <span style="">なめし道具</span><br>
+            </div>
+            <div style="float: left;">
+              <span style="padding-left: 20px;">5個</span><br>
+              <span style="padding-left: 20px;">5個</span><br>
+              <span style="padding-left: 20px;">1個</span><br>
+            </div>
+          </div>
+          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+            <h3 class="uk-card-title">Default2</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>仕入れ品</h4>
+        <div uk-sortable="group: origin-group">
+          <div class="uk-card uk-card-default uk-card-body uk-card-small uk-width-1-2@m">
+            <div>水: 20G</div>
+          </div>
+          <div class="uk-card uk-card-default uk-card-body uk-card-small uk-width-1-2@m">
+            <div>Default2</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
