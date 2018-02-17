@@ -1,0 +1,48 @@
+body {
+  width: 100%;
+}
+
+span.product-material {
+  display: block;
+  margin: 0;
+}
+
+.close-button-wrapper {
+  text-align: right;
+}
+
+#product-form-wrapper {
+  min-width: 25%;
+}
+
+div#product-materials div.product-material {
+  margin: 0 auto;
+}
+
+div#product-materials div.product-material * {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#product-submit-wrapper {
+  text-align: center;
+}
+
+#buying-submit-wrapper {
+  text-align: center;
+}
+
+#buying {
+  margin-top: 0px;
+}
+
+#buying-title {
+  height: 30px;
+}
+
+#visible-buying-form {
+  padding-top: 5px;
+}
+#visible-product-form {
+  padding-top: 5px;
+}

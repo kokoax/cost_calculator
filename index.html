@@ -4,50 +4,67 @@
     <meta charset="UTF-8">
     <title>Cost Calculator</title>
 
-    <link rel="stylesheet" href="//yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css" />
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
 
-    <!-- UIkit CSS -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/css/uikit.min.css" />
-    <!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.39/js/uikit-icons.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
   </head>
   <body>
-    <script src="./js/render_items.js"></script>
 
-    <div class="uk-child-width-1-2@s" uk-grid>
-      <div>
-        <h4>作りたいもの</h4>
-        <div uk-sortable="group: make-group">
-          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-            <h3 class="uk-card-title">革: 300G</h3>
-            <div style="float: left;">
-              <span style="">水</span><br>
-              <span style="">獣の革</span><br>
-              <span style="">なめし道具</span><br>
-            </div>
-            <div style="float: left;">
-              <span style="padding-left: 20px;">5個</span><br>
-              <span style="padding-left: 20px;">5個</span><br>
-              <span style="padding-left: 20px;">1個</span><br>
-            </div>
-          </div>
-          <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-            <h3 class="uk-card-title">Default2</h3>
+    <!-- productを追加するform -->
+    <!-- <div id='product-form-wrapper' class='uk-overlay uk-overlay-primary uk-position-center'> -->
+
+
+    <div id='product-form-modal' uk-modal>
+      <div id='product-form-wrapper' class="uk-modal-dialog uk-modal-body">
+        <form id='product-form' class='uk-form-stacked uk-width-1-1'>
+        </form>
+      </div>
+    </div>
+
+    <div id='buying-form-modal' uk-modal>
+      <div id='buying-form-wrapper' class="uk-modal-dialog uk-modal-body">
+        <form id='buying-form' class='uk-form-stacked uk-width-1-1'>
+        </form>
+      </div>
+    </div>
+
+    <div class="uk-grid">
+      <div id="product" class="uk-grid uk-width-1-2@s">
+        <div class='uk-width-1-1@s uk-grid'>
+          <h4 class='uk-width-auto'>作りたいもの</h4>
+          <div class='uk-width-auto'>
+            <!-- <a class='uk-width-expand' href='javascript:void 0;' id='visible-product-form' uk-icon='plus-circle'></a> -->
+            <a href='#product-form-modal' id='visible-product-form' uk-icon='plus-circle' uk-toggle></a>
           </div>
         </div>
+        <div uk-sortable="group: make-group" class="uk-width-1-1 card-group">
+        </div>
       </div>
-      <div>
-        <h4>仕入れ品</h4>
-        <div uk-sortable="group: origin-group">
-          <div class="uk-card uk-card-default uk-card-body uk-card-small uk-width-1-2@m">
-            <div>水: 20G</div>
+      <div id="buying" class="uk-grid uk-width-1-2@s">
+        <div class='uk-width-1-1@s uk-grid' id='buying-title'>
+          <h4 class='uk-width-auto'>仕入れ品</h4>
+          <div>
+            <a href='#buying-form-modal' id='visible-buying-form' uk-icon='plus-circle' uk-toggle></a>
           </div>
-          <div class="uk-card uk-card-default uk-card-body uk-card-small uk-width-1-2@m">
-            <div>Default2</div>
-          </div>
+        </div>
+        <div uk-sortable="group: origin-group" class="uk-width-1-1 card-group">
         </div>
       </div>
     </div>
+    <script src="js/tree_js/primitive_node.js"></script>
+    <script src="js/tree_js/tree_node.js"></script>
+    <script src="js/tree_js/tree.js"></script>
+    <script src="js/tree_js/all_node.js"></script>
+
+    <script src="js/render_items.js"></script>
+
+    <script src="js/product_form.js"></script>
+    <script src="js/buying_form.js"></script>
   </body>
 </html>
