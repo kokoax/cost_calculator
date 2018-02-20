@@ -1,5 +1,5 @@
-function close_modal_product(name) {
-  $('.uk-modal-close')[0].click();
+function close_modal_product() {
+  $('#product-modal-close').click();
 }
 
 function product_form_clear() {
@@ -9,7 +9,7 @@ function product_form_clear() {
 function product_form_reset() {
   product_form_clear();
   var body = $('#product-form');
-  body.append(form_close_button());
+  body.append(product_form_close_button());
   body.append(product_form_product_name());
   body.append(product_form_product_number());
   body.append(product_form_material_wrapper());
@@ -25,10 +25,11 @@ function form_close_button_wrapper() {
     .addClass('close-button-wrapper');
 }
 
-function form_close_button() {
+function product_form_close_button() {
   var wrapper = form_close_button_wrapper();
   return wrapper.append($('<a>')
     .addClass('uk-modal-close')
+    .attr('id', 'uk-modal-close-product')
     .attr('href', 'javascript:void 0;')
     .attr('uk-icon','close'));
 }
@@ -201,6 +202,7 @@ $(function() {
         form_danger($('#product-name'));
       } else {
         close_modal_product();
+        items.dump_to_db();
       }
     }
 

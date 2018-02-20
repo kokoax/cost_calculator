@@ -1,26 +1,19 @@
-function close_modal_buying(name) {
-  $('.uk-modal-close')[1].click();
+function close_modal_buying() {
+  $('#buying-modal-close').click();
 }
 
 function buying_form_clear() {
   $('#buying-form').empty();
 }
 
-/*
-function form_close_button_wrapper() {
-  return $('<div>')
-    .addClass('uk-width-1-1')
-    .addClass('close-button-wrapper');
-}
-
-function form_close_button() {
+function buying_form_close_button() {
   var wrapper = form_close_button_wrapper();
   return wrapper.append($('<a>')
     .addClass('uk-modal-close')
+    .attr('id', 'uk-modal-close-buying')
     .attr('href', 'javascript:void 0;')
     .attr('uk-icon','close'));
 }
-*/
 
 function buying_form_name() {
   return $('<input>')
@@ -63,7 +56,7 @@ function buying_form_submit() {
 function buying_form_reset() {
   buying_form_clear();
   var body = $('#buying-form');
-  body.append(form_close_button());
+  body.append(buying_form_close_button());
   body.append(buying_form_name());
   body.append(buying_form_price());
   body.append(buying_form_submit());
@@ -98,6 +91,7 @@ $(function() {
       } else {
         console.log("close modal on buying");
         close_modal_buying();
+        items.dump_to_db();
       }
     }
     return false;

@@ -1,6 +1,5 @@
 class AllNode {
   constructor() {
-    this.trees = [];
     this.nodes = [];
   }
 
@@ -69,6 +68,7 @@ class AllNode {
     for(var i in child_names) {
       var child = this.get_node(child_names[i]);
       children.push(child);
+      // 追加するproductに必要な要素が登録されていいなかった場合、nodesに要素を登録する。
       if(child.mode == PrimitiveNode.EMPTY) {
         // this.add_node(child);
       } else {

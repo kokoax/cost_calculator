@@ -1,23 +1,42 @@
+var g_docs = undefined;
 class ItemCtl {
   constructor() {
-    // var json = '{"product": {"ビー玉": {"material": {"ガラス": 10, "顔料": 10, "炉": 1}, "product_number": 30}, "革": {"material": {"水": 5, "獣の革": 5, "なめし道具": 1}, "product_number": 5}}, "buying": {"水": 20, "獣の革": 10, "なめし道具": 150}}';
-    // this.data = JSON.parse(json);
     this.all_node = new AllNode();
-    // this.all_node.add_tree("糸", ["カイコの繭", "紡績機織道具"], [10,1], 25);
-    // this.all_node.add_node(new Terminal("カイコの繭", 50));
-    // this.all_node.add_node(new Terminal("紡績機織道具", 150));
-    // this.all_node.add_tree("革", ["獣の革", "水", "なめし道具"], [5,5,1], 5);
-    // this.all_node.add_node(new Terminal("獣の革", 10));
-    // this.all_node.add_node(new Terminal("水", 20));
-    // this.all_node.add_node(new Terminal("なめし道具", 150));
-    // this.all_node.add_tree("レザーサンダル", ["革", "糸", "はさみ", "裁縫セット", "サンフラワーオイル","アダマンチウムインゴット"], [20,10,1,1,1,1], 5);
-    // this.all_node.add_node(new Terminal("サンフラワーオイル", 150));
-    // this.all_node.add_node(new Terminal("はさみ", 150));
-    // this.all_node.add_node(new Terminal("裁縫セット", 150));
-    // this.all_node.add_node(new Terminal("アダマンチウムインゴット", 200));
+    this.db =  new Datastore({
+      filename: './state.db',
+      autoload: true
+    });
+    this.set_to_all_node();
+  }
+
+  set_to_all_node() {
+    this.db.find({}, {multi: true}, function(err, docs){
+      for(var i in docs) {
+        var node = docs[i].data;
+        // childrenを持っていればNode
+        // childrenを持っていなければTerminal
+        if("children" in node) {
+          var children = [];
+          for(var i in node.children) {
+            children.push(node.children[i].name);
+          }
+          items.add_product(node.name, children, node.child_number, node.product_number);
+        } else {
+          items.add_buying(node.name, node.price);
+        }
+      }
+    });
   }
 
   dump_to_db() {
+    var self = this;
+    this.db.remove({}, {multi: true}, function(_,__) {
+      self.db.loadDatabase();
+    });
+    for(var i in this.all_node.nodes) {
+      this.db.insert([{"name": this.all_node.nodes[i].name, "data": this.all_node.nodes[i]}]);
+      this.all_node.nodes[i]
+    }
   }
 
   update_price_view(index) {
@@ -28,7 +47,6 @@ class ItemCtl {
   }
 
   update_material(index) {
-    console.log(index);
     var name = this.all_node.nodes[index].name;
     var price = this.all_node.nodes[index].price;
     $(['.', name].join('')).toggleClass('uk-form-danger');
